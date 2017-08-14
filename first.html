@@ -14,15 +14,20 @@
 		<input type="submit" value="Search" /> 
 	</form>
 	<br>
-	<div>
+	<div ng-show="user">
 		<div>
 			Name: {{user.name}}
 		</div>
 		<div>
 			Compnay: {{user.company}}
 		</div>
-		
-		<table>
+		Order:
+		<select ng-model="repoSortOrder">
+			<option value="+name">Name</option>
+			<option value="-stargazers_count">Stars</option>
+			<option value="+language">Language</option>
+		</select>
+		<table ng-hide="!user">
 			<thead>
 				<tr>
 					<th>Name</th>
@@ -31,10 +36,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="repo in repos">
-					<td>{{repo.name}}</td>
-					<td>{{repo.stargazers_count}}</td>
-					<td>{{repo.language}}</td>
+				<tr ng-repeat="repo in repos| orderBy:repoSortOrder">
+					<td>{{repo.name | uppercase}}</td>
+					<td>{{repo.stargazers_count|number}}</td>
+					<td>{{repo.language | lowercase}}</td>
 				</tr>
 			</tbody>
 		</table>
