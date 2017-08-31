@@ -3,18 +3,30 @@
 <head>
 	<title>Angular1</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="controller1.js"></script>
 </head>
 <body ng-controller="MainController">
-	<h1>Github Viewer</h1>
-	<p>{{error}}</p>
-
-	<form name="searchUser" ng-submit="search(username)">
-		<input type="search" placeholder="Username to find" ng-model="username" />
-		<input type="submit" value="Search" /> 
-	</form>
+	<div class="container">
+	<center>
+		<h1>Github Viewer</h1>
+		<p>{{error}}</p>
+		<p>{{countdown}}</p>
+		
+		<form name="searchUser" ng-submit="search(username)">
+			<input type="search" placeholder="Username to find" ng-model="username" />
+			<input type="submit" value="Search" class="btn btn-primary"/> 
+		</form>
+		</center>
 	<br>
-	<div ng-show="user">
+		<div ng-show="user">
+		<center>
+		<div >
+			<img class="img-responsive" ng-src="{{user.avatar_url}}"/>
+		</div>
 		<div>
 			Name: {{user.name}}
 		</div>
@@ -27,7 +39,8 @@
 			<option value="-stargazers_count">Stars</option>
 			<option value="+language">Language</option>
 		</select>
-		<table ng-hide="!user">
+		</center>
+		<table ng-hide="!user" class="table" id="userDetails">
 			<thead>
 				<tr>
 					<th>Name</th>
@@ -43,9 +56,8 @@
 				</tr>
 			</tbody>
 		</table>
-		<div>
-			<img ng-src="{{user.avatar_url}}"/>
-		</div>
-	</div>		 
+		
+	</div>		
+	</div> 
 </body>
 </html>
